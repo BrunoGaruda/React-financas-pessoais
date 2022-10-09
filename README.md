@@ -49,3 +49,9 @@ yarn add @types/react-modal -D
 • Consegue usar funções JavaScript para manipulação de cores.
 
 yarn add polished
+
+# Chalk
+
+• Foi necessário instalar o Chalk para o código rodar perfeitamente
+
+yarn add chalk
