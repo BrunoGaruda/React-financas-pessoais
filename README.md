@@ -32,7 +32,7 @@ yarn add miragejs
 
 • Biblioteca que facilita e intercepta as requisições de forma mais prática. É criado uma espécie de script para substituir o fecth
 
-- yarn add axios
+yarn add axios
 
 # React Modal
 
