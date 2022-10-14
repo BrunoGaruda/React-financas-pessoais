@@ -31,12 +31,14 @@ createServer({
       ]
     })
   },
+  //rota para retornar as transactions
 
+  //api front-end temporaria aguardando o back end
   routes() {
     this.namespace = 'api'
 
     this.get('/transactions ', () => {
-      //
+      // retornar todas as transacoes que tenho no banco de dados
       return this.schema.all('transaction')
     })
 
