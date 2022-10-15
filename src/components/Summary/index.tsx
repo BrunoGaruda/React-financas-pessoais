@@ -8,7 +8,9 @@ import { Container } from './styles'
 
 export function Summary() {
   // Utilizando o contexto com Hook {useContext}
-  const data = useContext(TransactionsContext)
+  const transactions = useContext(TransactionsContext)
+
+  console.log(transactions)
 
   return (
     <Container>
