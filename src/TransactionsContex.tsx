@@ -39,8 +39,16 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   }, [])
 
   // toda função async retorna uma promise
-  async function createTransaction(transaction: TransactionInput) {
-    await api.post('/transactions', transaction)
+  async function createTransaction(transactionInput: TransactionInput) {
+    // a resposta da api com o id, para ser listado
+    const response = await api.post('/transactions', {
+      ...transactionInput,
+      createdAt: new Date()
+    })
+    const { transaction } = response.data
+
+    // Conceito de imutabilidade, sempre são todas as informações mais a informação no final
+    setTransactions([...transactions, transaction])
   }
 
   return (
