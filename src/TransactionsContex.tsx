@@ -22,7 +22,7 @@ interface TransactionsProviderProps {
 
 interface TransactionsContextData {
   transactions: Transaction[]
-  createTransaction: (Transaction: TransactionInput) => void
+  createTransaction: (Transaction: TransactionInput) => Promise<void> //resultado do async
 }
 
 export const TransactionsContext = createContext<TransactionsContextData>(
@@ -38,8 +38,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       .then(response => setTransactions(response.data.transactions))
   }, [])
 
-  function createTransaction(transaction: TransactionInput) {
-    api.post('/transactions', transaction)
+  // toda função async retorna uma promise
+  async function createTransaction(transaction: TransactionInput) {
+    await api.post('/transactions', transaction)
   }
 
   return (
