@@ -5,16 +5,29 @@ interface Transaction {
   id: number
   title: string
   amount: number
-  type: string
   category: string
+  type: string
   createdAt: string
 }
+// Deu error dessa forma
+// type TransactionInput = Omit<Transaction, 'id' | 'createAt'>
 
+type TransactionInput = Pick<
+  Transaction,
+  'title' | 'amount' | 'type' | 'category'
+>
 interface TransactionsProviderProps {
   children: ReactNode
 }
 
-export const TransactionsContext = createContext<Transaction[]>([])
+interface TransactionsContextData {
+  transactions: Transaction[]
+  createTransaction: (Transaction: TransactionInput) => void
+}
+
+export const TransactionsContext = createContext<TransactionsContextData>(
+  {} as TransactionsContextData //  forçando ao objeto sobre o TransactionsContextData
+)
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
@@ -25,8 +38,13 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       .then(response => setTransactions(response.data.transactions))
   }, [])
 
+  function createTransaction(transaction: TransactionInput) {
+    api.post('/transactions', transaction)
+  }
+
   return (
-    <TransactionsContext.Provider value={transactions}>
+    // cochetes para javascript e objeto
+    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
       {children}
     </TransactionsContext.Provider>
   )
