@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import totalImg from '../../assets/total.svg'
-import { TransactionsContext } from '../../TransactionsContex'
+import { useTransactions } from '../../hooks/useTransactions'
 
 import { Container } from './styles'
 
 export function Summary() {
   // Utilizando o contexto com Hook {useContext}
-  const { transactions } = useContext(TransactionsContext)
+  const { transactions } = useTransactions()
 
   // const totalDeposit = transactions.reduce((acc, transaction) => {
   //   if (transaction.type === 'deposit') {

@@ -4,7 +4,7 @@ import { Header } from './components/Header'
 import { GlobalStyle } from './styles/global'
 import { useState } from 'react'
 import { NewTransactionModal } from './components/NewTransactionModal'
-import { TransactionsProvider } from './TransactionsContex'
+import { TransactionsProvider } from './hooks/useTransactions'
 
 // Assessibility
 Modal.setAppElement('#root')
